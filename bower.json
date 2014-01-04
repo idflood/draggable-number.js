@@ -1,0 +1,11 @@
+{
+  "name": "stimul skeleton",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "requirejs": "~2.1.8",
+    "requirejs-text": "~2.0.9",
+    "require-cs": "~0.4.4",
+    "coffee-script": "~1.6.3"
+  }
+}

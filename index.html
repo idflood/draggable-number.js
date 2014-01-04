@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="src/scripts/vendors/prism/prism.css">
+        <link rel="stylesheet" href="assets/styles/screen.css">
+
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
+        <script src="src/scripts/vendors/modernizr.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <a href="https://github.com/idflood/draggable-number.js" onClick="_gaq.push(['_trackEvent', 'Links', 'Fork', 'Go to github']);" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+        <header class="site-header">
+            <div class="container">
+                <h1 class="site-header__title">Draggable-number.js</h1>
+                <div class="site-header__description">
+                    <p>Try to click an drag the number below. <br/>You can also click on it to display an input so that a precise value can be entered.</p>
+                </div>
+                <div class="site-header__number">
+                    <input type="number" class="numeric-input" value="42" />
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <section class="text-infos">
+                <h2 class="text-infos__title">What?</h2>
+                <p>Draggable-number.js is a minimal numeric inputs. It replace the input with a draggable text span, allowing quick number change with the mouse. Clicking on the text will display an input so that you can define an exact number.</p>
+            </section>
+
+            <section class="text-infos">
+                <h2 class="text-infos__title">Usage</h2>
+                <p>Download <a href="https://raw.github.com/idflood/draggable-number.js/master/dist/draggable-number.min.js" target="_blank" download onClick="_gaq.push(['_trackEvent', 'Links', 'Download', 'Download draggable-number.js (minified)']);">draggable-number.min.js</a> and add it to your html. Then simply call `new DraggableNumber(element);` and you are set.</p>
+                <pre>
+                    <code class="language-markup">
+&lt;input class="numeric-input" value="42" /&gt;
+&lt;script src="dist/draggable-number.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  new DraggableNumber(document.getElementsByClassName('numeric-input'));
+&lt;/script&gt;</code>
+                </pre>
+            </section>
+
+            <section class="text-infos">
+                <h2 class="text-infos__title">License</h2>
+                <p>
+                    Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+                </p>
+            </section>
+
+            <section class="text-infos">
+                <h2 class="text-infos__title">Share this on:</h2>
+                <ul class="vertical-list">
+                  <li class="vertical-list__item">
+                    <a class="social__link" href="http://facebook.com/sharer.php?u=http://idflood.github.io/draggable-number.js">Facebook</a>
+                  </li>
+                  <li class="vertical-list__item">
+                    <a class="social__link" href="http://twitter.com/intent/tweet?url=http://idflood.github.io/draggable-number.js&amp;text=Draggable-number.js. Minimal numeric input&amp;via=idflood">Twitter</a>
+                  </li>
+                  <li class="vertical-list__item">
+                    <a class ="social__link" href="https://plus.google.com/share?url=http://idflood.github.io/draggable-number.js">Google+</a>
+                  </li>
+                </div>
+            </section>
+        </div>
+
+        <script src="src/scripts/vendors/prism/prism.js"></script>
+        <script src="src/scripts/vendors/draggable-number.min.js"></script>
+        <script>
+          new DraggableNumber(document.getElementsByClassName('numeric-input'));
+        </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-132118-3', 'idflood.github.io');
+          ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+$header_bg: lighten(#6fc4dd, 8%)
+$header_txt: #333
+
+.site-header
+  padding: 80px 0 80px 0
+  margin-bottom: 80px
+  background: $header_bg
+  +background-image(linear-gradient(lighten($header_bg, 12%), $header_bg))
+  color: $header_txt
+  text-align: center
+  //border-bottom: 1px solid darken($header_bg, 40%)
+  +box-shadow(rgba(#000, 0.2) 0 0 10px)
+
+.site-header__title
+  margin: 0
+  padding: 0
+  font-size: 48px
+  font-weight: 400
+  line-height: 60px
+  letter-spacing: 1px
+  color: $header_txt
+
+.site-header__description
+  font-size: 21px
+  font-weight: 200
+  line-height: 38px
+  font-style: italic
+
+.site-header__number
+  min-height: 40px
+  font-size: 3em
+  color: $header_txt

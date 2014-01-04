@@ -1,0 +1,25 @@
+// Set default heading color.
+h1, h2, h3, h4, h5, h6
+  color: $heading-color
+
+body
+  line-height: 1.8em
+
+// Set default links color.
+a
+  +link-colors($link-color, $link-hover-color, $link-active-color, $link-visited-color, $link-focus-color)
+  text-decoration: none
+  border-bottom: 1px dotted #777
+  &:hover, &:focus
+    border-color: $link-hover-color
+
+// utils
+.hidden
+  position: absolute !important
+  clip: rect(1px 1px 1px 1px) /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px)
+  padding: 0 !important
+  border: 0 !important
+  height: 1px !important
+  width: 1px !important
+  overflow: hidden
