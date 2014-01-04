@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Draggable-number.js</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+        .container {
+          padding: 20px;
+          text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p>Basic demo:</p>
+            <input class="numeric-input-1" value="42" />
+        </div>
+
+        <script src="src/draggable-number.js"></script>
+        <script>
+            new DraggableNumber(document.getElementsByClassName('numeric-input-1'));
+        </script>
+    </body>
+</html>
