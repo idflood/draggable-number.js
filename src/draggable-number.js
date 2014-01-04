@@ -1,21 +1,17 @@
-(function(root, factory) {
-  // Set up DraggableNumber appropriately for the environment. Start with AMD.
-  if (typeof define === 'function' && define.amd) {
-    define(['exports'], function(exports) {
-      // Export global even in AMD case in case this script is loaded with
-      // others that may still expect a global Backbone.
-      root.DraggableNumber = factory(root, exports);
-    });
-
-  // Next for Node.js or CommonJS. jQuery may not be needed as a module.
-  } else if (typeof exports !== 'undefined') {
-    factory(root, exports);
-
-  // Finally, as a browser global.
-  } else {
-    root.DraggableNumber = factory(root, {});
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory();
   }
-}(this, function(root, exports) {
+}(this, function () {
 
   var DraggableNumber = function(elements) {
     this.elements = elements;
@@ -237,6 +233,6 @@
     }
   };
 
-  exports.DraggableNumber = DraggableNumber;
+  this.DraggableNumber = DraggableNumber;
   return DraggableNumber;
 }));
