@@ -92,16 +92,21 @@
       }
     },
 
+    preventSelection: function (prevent) {
+      var value = 'none';
+      if (prevent === false) {
+        value = 'all';
+      }
+      document.body.style['-moz-user-select'] = value;
+      document.body.style['-webkit-user-select'] = value;
+      document.body.style['-ms-user-select'] = value;
+      document.body.style['user-select'] = value;
+    },
+
     addSpan: function () {
       var inputParent = this.input.parentNode;
       inputParent.insertBefore(this.span, this.input);
       this.span.innerHTML = this.value;
-
-      // Make span not selectable.
-      this.span.style['-moz-user-select'] = 'none';
-      this.span.style['-webkit-user-select'] = 'none';
-      this.span.style['-ms-user-select'] = 'none';
-      this.span.style['user-select'] = 'none';
 
       // Add resize cursor.
       this.span.style.cursor = "col-resize";
@@ -136,6 +141,7 @@
     },
 
     onMouseDown: function (e) {
+      this.preventSelection(true);
       this.isDragging = false;
       this.lastMousePosition = {x: e.clientX, y: e.clientY * -1};
 
@@ -144,6 +150,7 @@
     },
 
     onMouseUp: function (e) {
+      this.preventSelection(false);
       // If we didn't drag the span then we display the input.
       if (this.isDragging === false) {
         this.showInput();
