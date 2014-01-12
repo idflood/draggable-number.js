@@ -86,6 +86,26 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.onInputBlur", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.value = 10;
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should update the value based on the input and convert it to float", function() {
+      input.value = "42";
+      this.el.onInputBlur(null);
+      this.el.value.should.equal(42);
+    });
+  });
+
   describe("DraggableNumberElement.updateNumber", function() {
     beforeEach(function() {
       document.body.appendChild(input);
@@ -113,7 +133,6 @@ describe("Draggable-number", function() {
       this.el.updateNumber(8);
       this.el.span.innerHTML.should.equal('40');
     });
-
   });
 
   describe("DraggableNumberElement.hasMovedEnough", function() {
