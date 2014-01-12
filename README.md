@@ -1,4 +1,4 @@
-# Draggable-number.js
+# Draggable-number.js [![Build Status](https://travis-ci.org/idflood/draggable-number.js.png?branch=master)](https://travis-ci.org/idflood/draggable-number.js)
 Display number as simple text but allow click + drag to change the value. If the
 number is simply clicked then it displays an input so that a precise value can
 be entered.
