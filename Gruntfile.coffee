@@ -34,6 +34,27 @@ module.exports = (grunt) ->
           # Indicates whether 'mocha.run()' should be executed in 'bridge.js'
           run: true
 
+    karma:
+      options:
+        configFile: 'karma.conf.js'
+      ci:
+        browsers: ['PhantomJS']
+        singleRun: true
+      coverage:
+        browsers: ['PhantomJS']
+        reporters: ['coverage']
+        preprocessors:
+          'src/**/*.js': ['coverage']
+        coverageReporter:
+          type: 'lcov'
+          dir: 'coverage/'
+        singleRun: true
+
+    coveralls:
+      options:
+        debug: true
+        coverage_dir: 'coverage'
+
     jshint:
       all: ['src/**']
 
@@ -50,7 +71,10 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-notify"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-jshint"
+  grunt.loadNpmTasks "grunt-karma"
+  grunt.loadNpmTasks "grunt-karma-coveralls"
 
   grunt.registerTask "default", ["mocha", "jshint", "watch"]
   grunt.registerTask "build", ["mocha", "jshint", "uglify", "notify:build"]
-  grunt.registerTask "test", ["jshint", "mocha"]
+  grunt.registerTask "test", ["jshint", "karma:ci"]
+  grunt.registerTask "coverage", ["karma:coverage", "coveralls"]

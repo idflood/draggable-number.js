@@ -2,9 +2,9 @@
   "name": "draggable-number.js",
   "version": "0.0.1",
   "author": "idflood",
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/isaacs/npm.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/isaacs/npm.git"
   },
   "devDependencies": {
     "grunt": ">= 0.4.2",
@@ -14,7 +14,14 @@
     "grunt-contrib-copy": ">= 0.4.1",
     "grunt-mocha": ">= 0.4.6",
     "grunt-notify": ">= 0.2.13",
-    "grunt-contrib-jshint": "~0.8.0"
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-karma": "~0.6.2",
+    "karma-mocha": "~0.1.1",
+    "karma-coverage": "~0.1.4",
+    "karma-spec-reporter": "0.0.6",
+    "karma-growl-reporter": "~0.1.1",
+    "grunt-karma-coveralls": "~2.3.0",
+    "karma-chai": "0.0.2"
   },
   "scripts": {
     "test": "grunt test --verbose"
