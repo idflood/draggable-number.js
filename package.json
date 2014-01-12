@@ -2,6 +2,10 @@
   "name": "draggable-number.js",
   "version": "0.0.1",
   "author": "idflood",
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/isaacs/npm.git"
+  },
   "devDependencies": {
     "grunt": ">= 0.4.1",
     "grunt-contrib-watch": ">= 0.5.2",
