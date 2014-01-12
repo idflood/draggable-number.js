@@ -163,4 +163,55 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.showSpan", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.style.display = '';
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should show the span element", function() {
+      this.el.span.style.display = 'none';
+      this.el.showSpan();
+      this.el.span.style.display.should.equal('');
+    });
+
+    it("Should hide the input element", function() {
+      this.el.input.style.display = 'block';
+      this.el.showSpan();
+      this.el.input.style.display.should.equal('none');
+    });
+  });
+
+  describe("DraggableNumberElement.showInput", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.style.display = '';
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should show the input element", function() {
+      this.el.showInput();
+      this.el.input.style.display.should.equal('');
+    });
+
+    it("Should hide the span element", function() {
+      this.el.span.style.display = 'block';
+      this.el.showInput();
+      this.el.span.style.display.should.equal('none');
+    });
+  });
+
 });
