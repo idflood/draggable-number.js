@@ -214,4 +214,30 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.preventSelection", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      document.body.style['user-select'] = '';
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.style['user-select'] = '';
+      document.body.removeChild(input);
+    });
+
+    it("Should prevent selection by default", function() {
+      this.el.preventSelection();
+      document.body.style['user-select'].should.equal('none');
+    });
+
+    it("Should remove preventSelection when passed false", function() {
+      document.body.style['user-select'] = 'none';
+      this.el.preventSelection(false);
+      document.body.style['user-select'].should.equal('all');
+    });
+  });
+
 });
