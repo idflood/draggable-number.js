@@ -79,6 +79,36 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.updateNumber", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.value = 32;
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should update the value", function() {
+      this.el.updateNumber(10);
+      this.el.value.should.equal(42);
+    });
+
+    it("Should update the input.value", function() {
+      this.el.updateNumber(12);
+      this.el.input.value.should.equal('44');
+    });
+
+    it("Should update the span.innerHTML", function() {
+      this.el.updateNumber(8);
+      this.el.span.innerHTML.should.equal('40');
+    });
+
+  });
+
   describe("DraggableNumberElement.hasMovedEnough", function() {
     beforeEach(function() {
       document.body.appendChild(input);
