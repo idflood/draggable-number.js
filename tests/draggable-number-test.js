@@ -106,6 +106,31 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.onMouseDown", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should set isDragging to false", function() {
+      this.el.isDragging = true;
+      this.el.onMouseDown({clientX: 10, clientY: 42});
+      this.el.isDragging.should.equal(false);
+    });
+
+    it("Should save mouse position in lastMousePosition", function() {
+      var position = {clientX: 10, clientY: 42};
+      this.el.onMouseDown(position);
+      this.el.lastMousePosition.should.deep.equal({x: position.clientX, y: position.clientY * -1});
+    });
+  });
+
   describe("DraggableNumberElement.updateNumber", function() {
     beforeEach(function() {
       document.body.appendChild(input);
