@@ -11,5 +11,8 @@
     "grunt-notify": ">= 0.2.13",
     "grunt-contrib-jshint": "~0.8.0"
   },
+  "scripts": {
+    "test": "grunt test --verbose"
+  },
   "engine": "node >= 0.8.x"
 }
