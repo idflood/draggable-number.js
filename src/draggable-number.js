@@ -154,7 +154,7 @@
     onMouseDown: function (e) {
       this.preventSelection(true);
       this.isDragging = false;
-      this.lastMousePosition = {x: e.clientX, y: e.clientY * -1};
+      this.lastMousePosition = {x: e.clientX, y: e.clientY};
 
       document.addEventListener('mouseup', this.onMouseUp, false);
       document.addEventListener('mousemove', this.onMouseMove, false);
@@ -182,7 +182,7 @@
 
     onMouseMove: function (e) {
       // Get the new mouse position.
-      var newMousePosition = {x: e.clientX, y: e.clientY * -1};
+      var newMousePosition = {x: e.clientX, y: e.clientY};
 
       if (this.hasMovedEnough(newMousePosition, this.lastMousePosition)) {
         this.isDragging = true;
@@ -246,7 +246,8 @@
         return delta.x;
       }
       else {
-        return delta.y;
+        // Inverse the position.y since mouse move to up should increase the value.
+        return delta.y * -1;
       }
     }
   };

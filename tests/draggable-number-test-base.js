@@ -22,13 +22,6 @@ describe("Draggable-number (Base)", function() {
       result.should.equal(0);
     });
 
-    it("Should return the largest delta (y)", function() {
-      var posA = {x: 100, y: 200};
-      var posB = {x: 142, y: 243};
-      var result = this.el.getLargestDelta(posB, posA);
-      result.should.equal(43);
-    });
-
     it("Should return the largest delta (x)", function() {
       var posA = {x: 100, y: 200};
       var posB = {x: 145, y: 244};
@@ -36,11 +29,18 @@ describe("Draggable-number (Base)", function() {
       result.should.equal(45);
     });
 
+    it("Should return the largest delta (y) inversed", function() {
+      var posA = {x: 100, y: 200};
+      var posB = {x: 142, y: 243};
+      var result = this.el.getLargestDelta(posB, posA);
+      result.should.equal(-43);
+    });
+
     it("Should return the largest delta even if the difference is negative", function() {
       var posA = {x: 100, y: -200};
       var posB = {x: 142, y: -243};
       var result = this.el.getLargestDelta(posB, posA);
-      result.should.equal(-43);
+      result.should.equal(43);
     });
   });
 

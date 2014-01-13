@@ -44,7 +44,7 @@ describe("Draggable-number (UI)", function() {
     it("Should save mouse position in lastMousePosition", function() {
       var position = {clientX: 10, clientY: 42};
       this.el.onMouseDown(position);
-      this.el.lastMousePosition.should.deep.equal({x: position.clientX, y: position.clientY * -1});
+      this.el.lastMousePosition.should.deep.equal({x: position.clientX, y: position.clientY});
     });
   });
 
