@@ -12,7 +12,6 @@
     "grunt-contrib-watch": ">= 0.5.2",
     "grunt-contrib-uglify": ">= 0.2.0",
     "grunt-contrib-copy": ">= 0.4.1",
-    "grunt-mocha": ">= 0.4.6",
     "grunt-notify": ">= 0.2.13",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-karma": "~0.6.2",
