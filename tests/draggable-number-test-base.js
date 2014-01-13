@@ -142,4 +142,33 @@ describe("Draggable-number (Base)", function() {
       result.should.equal(true);
     });
   });
+
+  describe("new DraggableNumber", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+    });
+
+    afterEach(function() {
+
+      document.body.removeChild(input);
+    });
+
+    it("Should save a reference to the inputs", function() {
+      this.numbers = new DraggableNumber(input);
+      this.numbers.elements[0].should.equal(input);
+
+      this.numbers.destroy();
+      delete this.numbers;
+    });
+
+    it("Should save a reference to the new instances of draggableElement", function() {
+      this.numbers = new DraggableNumber(input);
+      this.numbers.instances.length.should.equal(1);
+
+      this.numbers.destroy();
+      delete this.numbers;
+    });
+
+
+  });
 });
