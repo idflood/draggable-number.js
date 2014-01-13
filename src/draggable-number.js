@@ -121,7 +121,8 @@
       // Add resize cursor.
       this.span.style.cursor = "col-resize";
 
-      this.span.addEventListener('selectstart', function() {
+      this.span.addEventListener('selectstart', function(e) {
+        e.preventDefault();
         return false;
       });
     },
