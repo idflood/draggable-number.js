@@ -29,6 +29,12 @@
       for (var i = this.elements.length - 1; i >= 0; i--) {
         this.instances.push(new DraggableNumber.Element(this.elements[i]));
       }
+    },
+
+    destroy: function () {
+      for (var i = this.instances.length - 1; i >= 0; i--) {
+        this.instances[i].destroy();
+      }
     }
   };
 
