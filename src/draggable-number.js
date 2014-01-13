@@ -23,7 +23,7 @@
     constructor: DraggableNumber,
 
     init: function () {
-      if (this.elements instanceof Array == false && this.elements) {
+      if (this.elements instanceof Array === false && this.elements) {
         this.elements = [this.elements];
       }
       for (var i = this.elements.length - 1; i >= 0; i--) {
