@@ -82,6 +82,30 @@ describe("Draggable-number (UI)", function() {
     });
   });
 
+  describe("DraggableNumberElement.onInputKeyDown", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.style.display = '';
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should blur the element if enter key is pressed", function() {
+      this.el.input.style.display = 'block';
+      this.el.input.focus();
+      document.activeElement.should.equal(this.el.input);
+      // Simulate enter key.
+      this.el.onInputKeyDown({charCode: 13});
+      document.activeElement.should.not.equal(this.el.input);
+      //this.el.input.style.display.should.equal('none');
+    });
+  });
+
   describe("DraggableNumberElement.showSpan", function() {
     beforeEach(function() {
       document.body.appendChild(input);
