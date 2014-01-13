@@ -15,6 +15,7 @@
 
   var DraggableNumber = function(elements) {
     this.elements = elements;
+    this.instances = [];
     this.init();
   };
 
@@ -22,8 +23,13 @@
     constructor: DraggableNumber,
 
     init: function () {
-      for (var i = this.elements.length - 1; i >= 0; i--) {
-        new DraggableNumber.Element(this.elements[i]);
+      if (this.elements instanceof Array) {
+        for (var i = this.elements.length - 1; i >= 0; i--) {
+          this.instances.push(new DraggableNumber.Element(this.elements[i]));
+        }
+      }
+      else if (this.elements) {
+        this.instances.push(new DraggableNumber.Element(this.elements));
       }
     }
   };
