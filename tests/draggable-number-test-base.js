@@ -2,6 +2,7 @@ var should = chai.should();
 
 describe("Draggable-number (Base)", function() {
   var input = document.createElement("input");
+  var input2 = document.createElement("input");
 
   describe("DraggableNumberElement.getLargestDelta", function() {
     beforeEach(function() {
@@ -146,11 +147,12 @@ describe("Draggable-number (Base)", function() {
   describe("new DraggableNumber", function() {
     beforeEach(function() {
       document.body.appendChild(input);
+      document.body.appendChild(input2);
     });
 
     afterEach(function() {
-
       document.body.removeChild(input);
+      document.body.removeChild(input2);
     });
 
     it("Should save a reference to the inputs", function() {
@@ -169,6 +171,24 @@ describe("Draggable-number (Base)", function() {
       delete this.numbers;
     });
 
+    it("Should work with an array of elements", function() {
+      this.numbers = new DraggableNumber([input]);
+      this.numbers.instances.length.should.equal(1);
+
+      this.numbers.destroy();
+      delete this.numbers;
+    });
+
+    it("Should work with a NodeList", function() {
+      input.className = "test-input";
+      input2.className = "test-input";
+      var elements = document.getElementsByClassName('test-input');
+      this.numbers = new DraggableNumber(elements);
+      this.numbers.instances.length.should.equal(2);
+
+      this.numbers.destroy();
+      delete this.numbers;
+    });
 
   });
 });
