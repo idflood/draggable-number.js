@@ -131,6 +131,40 @@ describe("Draggable-number", function() {
     });
   });
 
+  describe("DraggableNumberElement.onMouseUp", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.style.display = '';
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should set isDragging to false", function() {
+      this.el.isDragging = true;
+      this.el.onMouseUp(null);
+      this.el.isDragging.should.equal(false);
+    });
+
+    it("Should display the input if there is no drag", function() {
+      this.el.isDragging = false;
+      this.el.onMouseUp(null);
+      this.el.input.style.display.should.equal('');
+      this.el.span.style.display.should.equal('none');
+    });
+
+    it("Should remove the body prevent selection", function() {
+      document.body.style['user-select'] = 'none';
+      this.el.onMouseUp(null);
+
+      document.body.style['user-select'].should.equal('all');
+    });
+  });
+
   describe("DraggableNumberElement.updateNumber", function() {
     beforeEach(function() {
       document.body.appendChild(input);
