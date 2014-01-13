@@ -17,22 +17,11 @@ module.exports = (grunt) ->
 
       jschecks:
         files: ["tests/**", "src/**"]
-        tasks: ["jshint", "mocha"]
+        tasks: ["jshint", "karma:ci"]
 
     notify:
       build:
         options: {message: "Build complete"}
-
-    mocha:
-      all:
-        options:
-          mocha:
-            ignoreLeaks: false
-          reporter: 'Spec'
-          # URLs passed through as options
-          urls: ["tests.html"]
-          # Indicates whether 'mocha.run()' should be executed in 'bridge.js'
-          run: true
 
     karma:
       options:
@@ -67,14 +56,13 @@ module.exports = (grunt) ->
 
   # Load necessary plugins
   grunt.loadNpmTasks "grunt-contrib-watch"
-  grunt.loadNpmTasks "grunt-mocha"
   grunt.loadNpmTasks "grunt-notify"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-jshint"
   grunt.loadNpmTasks "grunt-karma"
   grunt.loadNpmTasks "grunt-karma-coveralls"
 
-  grunt.registerTask "default", ["mocha", "jshint", "watch"]
-  grunt.registerTask "build", ["mocha", "jshint", "uglify", "notify:build"]
+  grunt.registerTask "default", ["karma:ci", "jshint", "watch"]
+  grunt.registerTask "build", ["karma:ci", "jshint", "uglify", "notify:build"]
   grunt.registerTask "test", ["jshint", "karma:ci"]
   grunt.registerTask "coverage", ["karma:coverage", "coveralls"]
