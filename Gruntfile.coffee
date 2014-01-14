@@ -47,22 +47,33 @@ module.exports = (grunt) ->
     jshint:
       all: ['src/**']
 
+    umd:
+      vanilla:
+        src: 'src/draggable-number.js'
+        dest: 'dist/draggable-number.js'
+        objectToExport: 'DraggableNumber'
+      jquery:
+        src: 'src/jquery.draggable-number.js'
+        dest: 'dist/jquery.draggable-number.js'
+        objectToExport: 'DraggableNumber'
+
     uglify:
       options:
         report: 'gzip'
       build:
         files:
-          'dist/draggable-number.min.js': ['src/draggable-number.js']
+          'dist/draggable-number.min.js': ['dist/draggable-number.js']
 
   # Load necessary plugins
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-notify"
+  grunt.loadNpmTasks "grunt-umd"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-jshint"
   grunt.loadNpmTasks "grunt-karma"
   grunt.loadNpmTasks "grunt-karma-coveralls"
 
   grunt.registerTask "default", ["karma:ci", "jshint", "watch"]
-  grunt.registerTask "build", ["karma:ci", "jshint", "uglify", "notify:build"]
+  grunt.registerTask "build", ["karma:ci", "jshint", "umd:vanilla", "uglify", "notify:build"]
   grunt.registerTask "test", ["jshint", "karma:ci"]
   grunt.registerTask "coverage", ["karma:coverage", "coveralls"]

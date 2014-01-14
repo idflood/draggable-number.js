@@ -20,7 +20,8 @@
     "karma-spec-reporter": "0.0.6",
     "karma-growl-reporter": "~0.1.1",
     "grunt-karma-coveralls": "~2.3.0",
-    "karma-chai": "0.0.2"
+    "karma-chai": "0.0.2",
+    "grunt-umd": "~1.6.1"
   },
   "scripts": {
     "test": "grunt test --verbose"
