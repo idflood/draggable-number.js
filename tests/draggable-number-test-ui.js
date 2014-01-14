@@ -106,6 +106,25 @@ describe("Draggable-number (UI)", function() {
     });
   });
 
+  describe("DraggableNumberElement input value change", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      input.value = 42;
+      this.el = new DraggableNumber.Element(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("Should update the component value on blur", function() {
+      input.value = 10;
+      this.el.value.should.equal(10);
+    });
+  });
+
   describe("DraggableNumberElement.showSpan", function() {
     beforeEach(function() {
       document.body.appendChild(input);
