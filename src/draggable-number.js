@@ -151,8 +151,7 @@
     },
 
     onInputChange: function () {
-      this.value = parseFloat(this.input.value, 10);
-      this.updateNumber(0);
+      this.set(parseFloat(this.input.value, 10));
     },
 
     onInputKeyDown: function (e) {
@@ -220,7 +219,7 @@
       var offset = this.getNumberOffset(delta, modifier);
 
       // Update the input number.
-      this.updateNumber(offset);
+      this.set(this.value + offset);
 
       // Save current mouse position.
       this.lastMousePosition = newMousePosition;
@@ -241,8 +240,8 @@
       return increment;
     },
 
-    updateNumber: function (offset) {
-      this.value += offset;
+    set: function (new_value) {
+      this.value = new_value;
       this.input.value = this.value;
       this.span.innerHTML = this.value;
     },

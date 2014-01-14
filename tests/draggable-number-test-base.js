@@ -87,7 +87,7 @@ describe("Draggable-number (Base)", function() {
     });
   });
 
-  describe("DraggableNumberElement.updateNumber", function() {
+  describe("DraggableNumberElement.set", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 32;
@@ -101,17 +101,17 @@ describe("Draggable-number (Base)", function() {
     });
 
     it("Should update the value", function() {
-      this.el.updateNumber(10);
+      this.el.set(this.el.value + 10);
       this.el.value.should.equal(42);
     });
 
     it("Should update the input.value", function() {
-      this.el.updateNumber(12);
+      this.el.set(this.el.value + 12);
       this.el.input.value.should.equal('44');
     });
 
     it("Should update the span.innerHTML", function() {
-      this.el.updateNumber(8);
+      this.el.set(this.el.value + 8);
       this.el.span.innerHTML.should.equal('40');
     });
   });
