@@ -119,8 +119,9 @@ describe("Draggable-number (UI)", function() {
       document.body.removeChild(input);
     });
 
-    it("Should update the component value on blur", function() {
+    it("Should update the component value on input.onchange", function() {
       input.value = 10;
+      input.onchange();
       this.el.value.should.equal(10);
     });
   });

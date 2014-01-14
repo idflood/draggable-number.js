@@ -87,6 +87,7 @@
       this.onMouseDown = __bind(this.onMouseDown, this);
       this.onInputBlur = __bind(this.onInputBlur, this);
       this.onInputKeyDown = __bind(this.onInputKeyDown, this);
+      this.onInputChange = __bind(this.onInputChange, this);
 
       // Add mousedown event handler.
       this.span.addEventListener('mousedown', this.onMouseDown, false);
@@ -94,6 +95,12 @@
       // Add key events on the input.
       this.input.addEventListener('blur', this.onInputBlur, false);
       this.input.addEventListener('keypress', this.onInputKeyDown, false);
+      // Directly assign the function instead of using addeventlistener.
+      // To programatically change the value of the draggableNumber you
+      // could then do:
+      // input.value = new_number;
+      // input.onchange();
+      this.input.onchange = this.onInputChange;
     },
 
     destroy: function () {
@@ -139,9 +146,13 @@
     },
 
     onInputBlur: function (e) {
+      this.onInputChange();
+      this.showSpan();
+    },
+
+    onInputChange: function () {
       this.value = parseFloat(this.input.value, 10);
       this.updateNumber(0);
-      this.showSpan();
     },
 
     onInputKeyDown: function (e) {
