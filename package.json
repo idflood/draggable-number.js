@@ -1,27 +1,34 @@
 {
   "name": "draggable-number.js",
-  "version": "0.0.1",
-  "author": "idflood",
+  "description": "Minimal numeric input widget",
+  "version": "0.0.2",
+  "license": "Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.",
+  "author": {
+    "name": "David Mignot",
+    "url": "http://idflood.com"
+  },
   "repository": {
     "type": "git",
-    "url": "http://github.com/isaacs/npm.git"
+    "url": "http://github.com/idflood/draggable-number.js"
   },
   "devDependencies": {
     "grunt": ">= 0.4.2",
     "grunt-cli": ">= 0.1.11",
     "grunt-contrib-watch": ">= 0.5.2",
     "grunt-contrib-uglify": ">= 0.2.0",
-    "grunt-contrib-copy": ">= 0.4.1",
     "grunt-notify": ">= 0.2.13",
     "grunt-contrib-jshint": "~0.8.0",
+    "grunt-umd": "~1.6.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-banner": "~0.2.0",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-karma": "~0.6.2",
     "karma-mocha": "~0.1.1",
     "karma-coverage": "~0.1.4",
     "karma-spec-reporter": "0.0.6",
     "karma-growl-reporter": "~0.1.1",
     "grunt-karma-coveralls": "~2.3.0",
-    "karma-chai": "0.0.2",
-    "grunt-umd": "~1.6.1"
+    "karma-chai": "0.0.2"
   },
   "scripts": {
     "test": "grunt test --verbose"

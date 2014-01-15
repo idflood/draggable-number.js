@@ -15,6 +15,10 @@ module.exports = function(config) {
       'tests/**/*.js'
     ],
 
+    exclude: [
+      'src/scripts/wrappers/**'
+    ],
+
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ['spec', 'growl'],
