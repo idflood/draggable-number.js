@@ -88,6 +88,16 @@ DraggableNumber.Element.prototype = {
     this.input.onchange = this.onInputChange;
   },
 
+  set: function (new_value) {
+    this.value = new_value;
+    this.input.value = this.value;
+    this.span.innerHTML = this.value;
+  },
+
+  get: function () {
+    return this.value;
+  }
+
   destroy: function () {
     if (this.span.parentNode) {
       this.span.parentNode.removeChild(this.span);
@@ -218,12 +228,6 @@ DraggableNumber.Element.prototype = {
       increment *= -1;
     }
     return increment;
-  },
-
-  set: function (new_value) {
-    this.value = new_value;
-    this.input.value = this.value;
-    this.span.innerHTML = this.value;
   },
 
   getLargestDelta: function (newPosition, oldPosition) {
