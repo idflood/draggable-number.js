@@ -3,7 +3,7 @@ var should = chai.should();
 describe("Draggable-number (UI)", function() {
   var input = document.createElement("input");
 
-  describe("DraggableNumberElement.onInputBlur", function() {
+  describe("DraggableNumberElement._onInputBlur", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 10;
@@ -18,12 +18,12 @@ describe("Draggable-number (UI)", function() {
 
     it("Should update the value based on the input and convert it to float", function() {
       input.value = "42";
-      this.el.onInputBlur(null);
+      this.el._onInputBlur(null);
       this.el.value.should.equal(42);
     });
   });
 
-  describe("DraggableNumberElement.onMouseDown", function() {
+  describe("DraggableNumberElement._onMouseDown", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       this.el = new DraggableNumber.Element(input);
@@ -37,18 +37,18 @@ describe("Draggable-number (UI)", function() {
 
     it("Should set isDragging to false", function() {
       this.el.isDragging = true;
-      this.el.onMouseDown({clientX: 10, clientY: 42});
+      this.el._onMouseDown({clientX: 10, clientY: 42});
       this.el.isDragging.should.equal(false);
     });
 
     it("Should save mouse position in lastMousePosition", function() {
       var position = {clientX: 10, clientY: 42};
-      this.el.onMouseDown(position);
+      this.el._onMouseDown(position);
       this.el.lastMousePosition.should.deep.equal({x: position.clientX, y: position.clientY});
     });
   });
 
-  describe("DraggableNumberElement.onMouseUp", function() {
+  describe("DraggableNumberElement._onMouseUp", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
@@ -63,26 +63,26 @@ describe("Draggable-number (UI)", function() {
 
     it("Should set isDragging to false", function() {
       this.el.isDragging = true;
-      this.el.onMouseUp(null);
+      this.el._onMouseUp(null);
       this.el.isDragging.should.equal(false);
     });
 
     it("Should display the input if there is no drag", function() {
       this.el.isDragging = false;
-      this.el.onMouseUp(null);
+      this.el._onMouseUp(null);
       this.el.input.style.display.should.equal('');
       this.el.span.style.display.should.equal('none');
     });
 
     it("Should remove the body prevent selection", function() {
       document.body.style['user-select'] = 'none';
-      this.el.onMouseUp(null);
+      this.el._onMouseUp(null);
 
       document.body.style['user-select'].should.equal('all');
     });
   });
 
-  describe("DraggableNumberElement.onInputKeyDown", function() {
+  describe("DraggableNumberElement._onInputKeyDown", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
@@ -100,7 +100,7 @@ describe("Draggable-number (UI)", function() {
       this.el.input.focus();
       document.activeElement.should.equal(this.el.input);
       // Simulate enter key.
-      this.el.onInputKeyDown({charCode: 13});
+      this.el._onInputKeyDown({charCode: 13});
       document.activeElement.should.not.equal(this.el.input);
       //this.el.input.style.display.should.equal('none');
     });
@@ -203,7 +203,7 @@ describe("Draggable-number (UI)", function() {
     });
   });
 
-  describe("DraggableNumberElement.onMouseMove", function() {
+  describe("DraggableNumberElement._onMouseMove", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 10;
@@ -218,32 +218,32 @@ describe("Draggable-number (UI)", function() {
     });
 
     it("Should not modify value if mouse position is less than dragThreshold (10).", function() {
-      this.el.onMouseMove({clientX: 1, clientY: 0});
+      this.el._onMouseMove({clientX: 1, clientY: 0});
       this.el.value.should.equal(10);
     });
 
     it("Should increment value by 1 if there is no modifier key.", function() {
-      this.el.onMouseMove({clientX: 20, clientY: 0});
+      this.el._onMouseMove({clientX: 20, clientY: 0});
       this.el.value.should.equal(11);
     });
 
     it("Should increment value by 10 if shift key is pressed.", function() {
-      this.el.onMouseMove({clientX: 20, clientY: 0, shiftKey: true});
+      this.el._onMouseMove({clientX: 20, clientY: 0, shiftKey: true});
       this.el.value.should.equal(20);
     });
 
     it("Should increment value by 0.1 if ctrl key is pressed.", function() {
-      this.el.onMouseMove({clientX: 20, clientY: 0, ctrlKey: true});
+      this.el._onMouseMove({clientX: 20, clientY: 0, ctrlKey: true});
       this.el.value.should.equal(10.1);
     });
 
     it("Should save new mouse position if difference is bigger than dragThreshold.", function() {
-      this.el.onMouseMove({clientX: 20, clientY: 0});
+      this.el._onMouseMove({clientX: 20, clientY: 0});
       this.el.lastMousePosition.x.should.equal(20);
     });
 
     it("Should not save new mouse position if difference is smaller than dragThreshold.", function() {
-      this.el.onMouseMove({clientX: 9, clientY: 0});
+      this.el._onMouseMove({clientX: 9, clientY: 0});
       this.el.lastMousePosition.x.should.equal(0);
     });
   });

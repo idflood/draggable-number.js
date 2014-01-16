@@ -67,25 +67,25 @@ DraggableNumber.Element.prototype = {
     this.input.style.display = 'none';
 
     // Bind 'this' on event callbacks.
-    this.onMouseUp = __bind(this.onMouseUp, this);
-    this.onMouseMove = __bind(this.onMouseMove, this);
-    this.onMouseDown = __bind(this.onMouseDown, this);
-    this.onInputBlur = __bind(this.onInputBlur, this);
-    this.onInputKeyDown = __bind(this.onInputKeyDown, this);
-    this.onInputChange = __bind(this.onInputChange, this);
+    this._onMouseUp = __bind(this._onMouseUp, this);
+    this._onMouseMove = __bind(this._onMouseMove, this);
+    this._onMouseDown = __bind(this._onMouseDown, this);
+    this._onInputBlur = __bind(this._onInputBlur, this);
+    this._onInputKeyDown = __bind(this._onInputKeyDown, this);
+    this._onInputChange = __bind(this._onInputChange, this);
 
     // Add mousedown event handler.
-    this.span.addEventListener('mousedown', this.onMouseDown, false);
+    this.span.addEventListener('mousedown', this._onMouseDown, false);
 
     // Add key events on the input.
-    this.input.addEventListener('blur', this.onInputBlur, false);
-    this.input.addEventListener('keypress', this.onInputKeyDown, false);
+    this.input.addEventListener('blur', this._onInputBlur, false);
+    this.input.addEventListener('keypress', this._onInputKeyDown, false);
     // Directly assign the function instead of using addeventlistener.
     // To programatically change the value of the draggableNumber you
     // could then do:
     // input.value = new_number;
     // input.onchange();
-    this.input.onchange = this.onInputChange;
+    this.input.onchange = this._onInputChange;
   },
 
   set: function (new_value) {
@@ -96,7 +96,7 @@ DraggableNumber.Element.prototype = {
 
   get: function () {
     return this.value;
-  }
+  },
 
   destroy: function () {
     if (this.span.parentNode) {
@@ -135,32 +135,32 @@ DraggableNumber.Element.prototype = {
     this.span.style.display = this.spanDisplayStyle;
   },
 
-  onInputBlur: function (e) {
-    this.onInputChange();
+  _onInputBlur: function (e) {
+    this._onInputChange();
     this.showSpan();
   },
 
-  onInputChange: function () {
+  _onInputChange: function () {
     this.set(parseFloat(this.input.value, 10));
   },
 
-  onInputKeyDown: function (e) {
+  _onInputKeyDown: function (e) {
     var keyEnter = 13;
     if (e.charCode == keyEnter) {
       this.input.blur();
     }
   },
 
-  onMouseDown: function (e) {
+  _onMouseDown: function (e) {
     this.preventSelection(true);
     this.isDragging = false;
     this.lastMousePosition = {x: e.clientX, y: e.clientY};
 
-    document.addEventListener('mouseup', this.onMouseUp, false);
-    document.addEventListener('mousemove', this.onMouseMove, false);
+    document.addEventListener('mouseup', this._onMouseUp, false);
+    document.addEventListener('mousemove', this._onMouseMove, false);
   },
 
-  onMouseUp: function (e) {
+  _onMouseUp: function (e) {
     this.preventSelection(false);
     // If we didn't drag the span then we display the input.
     if (this.isDragging === false) {
@@ -168,8 +168,8 @@ DraggableNumber.Element.prototype = {
     }
     this.isDragging = false;
 
-    document.removeEventListener('mouseup', this.onMouseUp, false);
-    document.removeEventListener('mousemove', this.onMouseMove, false);
+    document.removeEventListener('mouseup', this._onMouseUp, false);
+    document.removeEventListener('mousemove', this._onMouseMove, false);
   },
 
   hasMovedEnough: function (newMousePosition, lastMousePosition) {
@@ -180,7 +180,7 @@ DraggableNumber.Element.prototype = {
     return false;
   },
 
-  onMouseMove: function (e) {
+  _onMouseMove: function (e) {
     // Get the new mouse position.
     var newMousePosition = {x: e.clientX, y: e.clientY};
 
