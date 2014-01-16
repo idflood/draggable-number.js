@@ -101,17 +101,17 @@ describe("Draggable-number (Base)", function() {
     });
 
     it("Should update the value", function() {
-      this.el.set(this.el.value + 10);
-      this.el.value.should.equal(42);
+      this.el.set(this.el.get() + 10);
+      this.el.get().should.equal(42);
     });
 
     it("Should update the input.value", function() {
-      this.el.set(this.el.value + 12);
+      this.el.set(this.el.get() + 12);
       this.el.input.value.should.equal('44');
     });
 
     it("Should update the span.innerHTML", function() {
-      this.el.set(this.el.value + 8);
+      this.el.set(this.el.get() + 8);
       this.el.span.innerHTML.should.equal('40');
     });
   });
