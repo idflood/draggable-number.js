@@ -87,7 +87,7 @@ describe("Draggable-number (Base)", function() {
     });
   });
 
-  describe("DraggableNumberElement.set", function() {
+  describe("DraggableNumberElement.set and get", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 32;
