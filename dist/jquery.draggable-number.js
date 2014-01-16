@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.0.2
+ * @version 0.0.3
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -51,69 +51,79 @@ DraggableNumber.MODIFIER_SMALL = 2;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 DraggableNumber.Element = function (input) {
-  this.input = input;
-  this.span = document.createElement("span");
-  this.isDragging = false;
-  this.lastMousePosition = {x: 0, y: 0};
-  this.value = 0;
+  this._input = input;
+  this._span = document.createElement("span");
+  this._isDragging = false;
+  this._lastMousePosition = {x: 0, y: 0};
+  this._value = 0;
 
   // Minimum mouse movement before a drag start.
-  this.dragThreshold = 10;
+  this._dragThreshold = 10;
 
   // Store the original display style for the input and span.
-  this.inputDisplayStyle = "";
-  this.spanDisplayStyle = "";
+  this._inputDisplayStyle = "";
+  this._spanDisplayStyle = "";
 
-  this.init();
+  this._init();
 };
 
 DraggableNumber.Element.prototype = {
   constructor: DraggableNumber.Element,
 
-  init: function () {
-    // Get the inital value from the input.
-    this.value = parseFloat(this.input.value, 10);
+  _init: function () {
+    // Get the inital _value from the input.
+    this._value = parseFloat(this._input.value, 10);
 
-    // Add a span containing the value. Clicking on the span will show the
-    // input. Dragging the span will change the value.
-    this.addSpan();
+    // Add a span containing the _value. Clicking on the span will show the
+    // input. Dragging the span will change the _value.
+    this._addSpan();
 
     // Save the original display style of the input and span.
-    this.inputDisplayStyle = this.input.style.display;
-    this.spanDisplayStyle = this.span.style.display;
+    this._inputDisplayStyle = this._input.style.display;
+    this._spanDisplayStyle = this._span.style.display;
 
     // Hide the input.
-    this.input.style.display = 'none';
+    this._input.style.display = 'none';
 
     // Bind 'this' on event callbacks.
-    this.onMouseUp = __bind(this.onMouseUp, this);
-    this.onMouseMove = __bind(this.onMouseMove, this);
-    this.onMouseDown = __bind(this.onMouseDown, this);
-    this.onInputBlur = __bind(this.onInputBlur, this);
-    this.onInputKeyDown = __bind(this.onInputKeyDown, this);
-    this.onInputChange = __bind(this.onInputChange, this);
+    this._onMouseUp = __bind(this._onMouseUp, this);
+    this._onMouseMove = __bind(this._onMouseMove, this);
+    this._onMouseDown = __bind(this._onMouseDown, this);
+    this._onInputBlur = __bind(this._onInputBlur, this);
+    this._onInputKeyDown = __bind(this._onInputKeyDown, this);
+    this._onInputChange = __bind(this._onInputChange, this);
 
     // Add mousedown event handler.
-    this.span.addEventListener('mousedown', this.onMouseDown, false);
+    this._span.addEventListener('mousedown', this._onMouseDown, false);
 
     // Add key events on the input.
-    this.input.addEventListener('blur', this.onInputBlur, false);
-    this.input.addEventListener('keypress', this.onInputKeyDown, false);
+    this._input.addEventListener('blur', this._onInputBlur, false);
+    this._input.addEventListener('keypress', this._onInputKeyDown, false);
     // Directly assign the function instead of using addeventlistener.
-    // To programatically change the value of the draggableNumber you
+    // To programatically change the _value of the draggableNumber you
     // could then do:
-    // input.value = new_number;
+    // input._value = new_number;
     // input.onchange();
-    this.input.onchange = this.onInputChange;
+    this._input.onchange = this._onInputChange;
+  },
+
+  set: function (new_value) {
+    this._value = new_value;
+    this._input.value = this._value;
+    this._span.innerHTML = this._value;
+  },
+
+  get: function () {
+    return this._value;
   },
 
   destroy: function () {
-    if (this.span.parentNode) {
-      this.span.parentNode.removeChild(this.span);
+    if (this._span.parentNode) {
+      this._span.parentNode.removeChild(this._span);
     }
   },
 
-  preventSelection: function (prevent) {
+  _preventSelection: function (prevent) {
     var value = 'none';
     if (prevent === false) {
       value = 'all';
@@ -124,86 +134,81 @@ DraggableNumber.Element.prototype = {
     document.body.style['user-select'] = value;
   },
 
-  addSpan: function () {
-    var inputParent = this.input.parentNode;
-    inputParent.insertBefore(this.span, this.input);
-    this.span.innerHTML = this.value;
+  _addSpan: function () {
+    var inputParent = this._input.parentNode;
+    inputParent.insertBefore(this._span, this._input);
+    this._span.innerHTML = this.get();
 
     // Add resize cursor.
-    this.span.style.cursor = "col-resize";
-
-    this.span.addEventListener('selectstart', function(e) {
-      e.preventDefault();
-      return false;
-    });
+    this._span.style.cursor = "col-resize";
   },
 
-  showInput: function () {
-    this.input.style.display = this.inputDisplayStyle;
-    this.span.style.display = 'none';
-    this.input.focus();
+  _showInput: function () {
+    this._input.style.display = this._inputDisplayStyle;
+    this._span.style.display = 'none';
+    this._input.focus();
   },
 
-  showSpan: function () {
-    this.input.style.display = 'none';
-    this.span.style.display = this.spanDisplayStyle;
+  _showSpan: function () {
+    this._input.style.display = 'none';
+    this._span.style.display = this._spanDisplayStyle;
   },
 
-  onInputBlur: function (e) {
-    this.onInputChange();
-    this.showSpan();
+  _onInputBlur: function (e) {
+    this._onInputChange();
+    this._showSpan();
   },
 
-  onInputChange: function () {
-    this.set(parseFloat(this.input.value, 10));
+  _onInputChange: function () {
+    this.set(parseFloat(this._input.value, 10));
   },
 
-  onInputKeyDown: function (e) {
+  _onInputKeyDown: function (e) {
     var keyEnter = 13;
     if (e.charCode == keyEnter) {
-      this.input.blur();
+      this._input.blur();
     }
   },
 
-  onMouseDown: function (e) {
-    this.preventSelection(true);
-    this.isDragging = false;
-    this.lastMousePosition = {x: e.clientX, y: e.clientY};
+  _onMouseDown: function (e) {
+    this._preventSelection(true);
+    this._isDragging = false;
+    this._lastMousePosition = {x: e.clientX, y: e.clientY};
 
-    document.addEventListener('mouseup', this.onMouseUp, false);
-    document.addEventListener('mousemove', this.onMouseMove, false);
+    document.addEventListener('mouseup', this._onMouseUp, false);
+    document.addEventListener('mousemove', this._onMouseMove, false);
   },
 
-  onMouseUp: function (e) {
-    this.preventSelection(false);
+  _onMouseUp: function (e) {
+    this._preventSelection(false);
     // If we didn't drag the span then we display the input.
-    if (this.isDragging === false) {
-      this.showInput();
+    if (this._isDragging === false) {
+      this._showInput();
     }
-    this.isDragging = false;
+    this._isDragging = false;
 
-    document.removeEventListener('mouseup', this.onMouseUp, false);
-    document.removeEventListener('mousemove', this.onMouseMove, false);
+    document.removeEventListener('mouseup', this._onMouseUp, false);
+    document.removeEventListener('mousemove', this._onMouseMove, false);
   },
 
-  hasMovedEnough: function (newMousePosition, lastMousePosition) {
-    if (Math.abs(newMousePosition.x - lastMousePosition.x) >= this.dragThreshold ||
-      Math.abs(newMousePosition.y - lastMousePosition.y) >= this.dragThreshold) {
+  _hasMovedEnough: function (newMousePosition, lastMousePosition) {
+    if (Math.abs(newMousePosition.x - lastMousePosition.x) >= this._dragThreshold ||
+      Math.abs(newMousePosition.y - lastMousePosition.y) >= this._dragThreshold) {
       return true;
     }
     return false;
   },
 
-  onMouseMove: function (e) {
+  _onMouseMove: function (e) {
     // Get the new mouse position.
     var newMousePosition = {x: e.clientX, y: e.clientY};
 
-    if (this.hasMovedEnough(newMousePosition, this.lastMousePosition)) {
-      this.isDragging = true;
+    if (this._hasMovedEnough(newMousePosition, this._lastMousePosition)) {
+      this._isDragging = true;
     }
 
     // If we are not dragging don't do anything.
-    if (this.isDragging === false) {
+    if (this._isDragging === false) {
       return;
     }
 
@@ -217,19 +222,19 @@ DraggableNumber.Element.prototype = {
     }
 
     // Calculate the delta with previous mouse position.
-    var delta = this.getLargestDelta(newMousePosition, this.lastMousePosition);
+    var delta = this._getLargestDelta(newMousePosition, this._lastMousePosition);
 
     // Get the number offset.
-    var offset = this.getNumberOffset(delta, modifier);
+    var offset = this._getNumberOffset(delta, modifier);
 
     // Update the input number.
-    this.set(this.value + offset);
+    this.set(this.get() + offset);
 
     // Save current mouse position.
-    this.lastMousePosition = newMousePosition;
+    this._lastMousePosition = newMousePosition;
   },
 
-  getNumberOffset: function (delta, modifier) {
+  _getNumberOffset: function (delta, modifier) {
     var increment = 1;
     if (modifier == DraggableNumber.MODIFIER_SMALL) {
       increment *= 0.1;
@@ -244,13 +249,7 @@ DraggableNumber.Element.prototype = {
     return increment;
   },
 
-  set: function (new_value) {
-    this.value = new_value;
-    this.input.value = this.value;
-    this.span.innerHTML = this.value;
-  },
-
-  getLargestDelta: function (newPosition, oldPosition) {
+  _getLargestDelta: function (newPosition, oldPosition) {
     var result = 0;
     var delta = {
       x: newPosition.x - oldPosition.x,
@@ -260,7 +259,7 @@ DraggableNumber.Element.prototype = {
       return delta.x;
     }
     else {
-      // Inverse the position.y since mouse move to up should increase the value.
+      // Inverse the position.y since mouse move to up should increase the _value.
       return delta.y * -1;
     }
   }
