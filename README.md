@@ -13,3 +13,26 @@ Include the draggable-number.min.js file and then call `new DraggableNumber(elem
   new DraggableNumber(document.getElementsByClassName('numeric-input'));
 </script>
 ```
+
+## API:
+
+### item.get()
+Return the current value as float.
+
+```javascript
+var value = item.get();
+```
+
+### item.set(value)
+Set the value of the element. This update the input and span value.
+
+```javascript
+item.set(42);
+```
+
+### item.destroy()
+Remove the DraggableNumber element, leaving the original input field.
+
+```javascript
+item.destroy();
+```
