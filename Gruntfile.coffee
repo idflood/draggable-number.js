@@ -63,7 +63,7 @@ module.exports = (grunt) ->
         src: ['src/draggable-number.js']
         dest: 'dist/draggable-number.js'
       jquery:
-        src: ['src/draggable-number.js', 'src/scripts/wrappers/jquery.draggable-number.js']
+        src: ['src/draggable-number.js', 'src/wrappers/jquery.draggable-number.js']
         dest: 'dist/jquery.draggable-number.js'
 
     umd:

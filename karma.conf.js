@@ -16,7 +16,7 @@ module.exports = function(config) {
     ],
 
     exclude: [
-      'src/scripts/wrappers/**'
+      'src/wrappers/**'
     ],
 
     // test results reporter to use
