@@ -31,6 +31,11 @@ DraggableNumber.MODIFIER_SMALL = 2;
 // Utility function to replace .bind(this) since it is not available in all browsers.
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
+/**
+ * Define the DraggableNumber element.
+ * @constructor
+ * @param {DomElement} input - The input which will be converted to a draggableNumber.
+ */
 DraggableNumber.Element = function (input) {
   this._input = input;
   this._span = document.createElement("span");
@@ -170,15 +175,29 @@ DraggableNumber.Element.prototype = {
     this._span.style.display = this._spanDisplayStyle;
   },
 
+  /**
+   * Called on input blur, set the new value and display span.
+   * @private
+   * @param {Object} e - Event.
+   */
   _onInputBlur: function (e) {
     this._onInputChange();
     this._showSpan();
   },
 
+  /**
+   * Called on input onchange event, set the value based on the input value.
+   * @private
+   */
   _onInputChange: function () {
     this.set(parseFloat(this._input.value, 10));
   },
 
+  /**
+   * Called on input key down, blur on enter.
+   * @private
+   * @param {Object} e - Key event.
+   */
   _onInputKeyDown: function (e) {
     var keyEnter = 13;
     if (e.charCode == keyEnter) {
@@ -186,6 +205,11 @@ DraggableNumber.Element.prototype = {
     }
   },
 
+  /**
+   * Called on span mouse down, prevent selection and initalize logic for mouse drag.
+   * @private
+   * @param {Object} e - Mouse event.
+   */
   _onMouseDown: function (e) {
     this._preventSelection(true);
     this._isDragging = false;
@@ -195,6 +219,11 @@ DraggableNumber.Element.prototype = {
     document.addEventListener('mousemove', this._onMouseMove, false);
   },
 
+  /**
+   * Called on span mouse up, show input if no drag.
+   * @private
+   * @param {Object} e - Mouse event.
+   */
   _onMouseUp: function (e) {
     this._preventSelection(false);
     // If we didn't drag the span then we display the input.
