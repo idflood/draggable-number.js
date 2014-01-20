@@ -10,7 +10,7 @@ Include the draggable-number.min.js file and then call `new DraggableNumber(elem
 <input class="numeric-input" value="42" />
 <script src="dist/draggable-number.min.js"></script>
 <script>
-  new DraggableNumber(document.getElementsByClassName('numeric-input'));
+  new DraggableNumber(document.getElementsByClassName('numeric-input')[0]);
 </script>
 ```
 
