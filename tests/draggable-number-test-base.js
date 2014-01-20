@@ -7,7 +7,7 @@ describe("Draggable-number (Base)", function() {
   describe("DraggableNumberElement.getLargestDelta", function() {
     beforeEach(function() {
       document.body.appendChild(input);
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -47,7 +47,7 @@ describe("Draggable-number (Base)", function() {
   describe("DraggableNumberElement.getNumberOffset", function() {
     beforeEach(function() {
       document.body.appendChild(input);
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -91,7 +91,7 @@ describe("Draggable-number (Base)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 32;
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -119,7 +119,7 @@ describe("Draggable-number (Base)", function() {
   describe("DraggableNumberElement.hasMovedEnough", function() {
     beforeEach(function() {
       document.body.appendChild(input);
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -142,53 +142,5 @@ describe("Draggable-number (Base)", function() {
       var result = this.el._hasMovedEnough({x: 0, y: 42}, {x: 0, y: 30});
       result.should.equal(true);
     });
-  });
-
-  describe("new DraggableNumber", function() {
-    beforeEach(function() {
-      document.body.appendChild(input);
-      document.body.appendChild(input2);
-    });
-
-    afterEach(function() {
-      document.body.removeChild(input);
-      document.body.removeChild(input2);
-    });
-
-    it("Should save a reference to the inputs", function() {
-      this.numbers = new DraggableNumber(input);
-      this.numbers.elements[0].should.equal(input);
-
-      this.numbers.destroy();
-      delete this.numbers;
-    });
-
-    it("Should save a reference to the new instances of draggableElement", function() {
-      this.numbers = new DraggableNumber(input);
-      this.numbers.instances.length.should.equal(1);
-
-      this.numbers.destroy();
-      delete this.numbers;
-    });
-
-    it("Should work with an array of elements", function() {
-      this.numbers = new DraggableNumber([input]);
-      this.numbers.instances.length.should.equal(1);
-
-      this.numbers.destroy();
-      delete this.numbers;
-    });
-
-    it("Should work with a NodeList", function() {
-      input.className = "test-input";
-      input2.className = "test-input";
-      var elements = document.getElementsByClassName('test-input');
-      this.numbers = new DraggableNumber(elements);
-      this.numbers.instances.length.should.equal(2);
-
-      this.numbers.destroy();
-      delete this.numbers;
-    });
-
   });
 });

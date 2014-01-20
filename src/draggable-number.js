@@ -1,33 +1,3 @@
-var DraggableNumber = function(elements) {
-  this.elements = elements;
-  this.instances = [];
-  this.init();
-};
-
-DraggableNumber.prototype = {
-  constructor: DraggableNumber,
-
-  init: function () {
-    if (this.elements && this.elements instanceof Array === false && this.elements instanceof NodeList === false) {
-      this.elements = [this.elements];
-    }
-    for (var i = this.elements.length - 1; i >= 0; i--) {
-      this.instances.push(new DraggableNumber.Element(this.elements[i]));
-    }
-  },
-
-  destroy: function () {
-    for (var i = this.instances.length - 1; i >= 0; i--) {
-      this.instances[i].destroy();
-    }
-  }
-};
-
-// Set some constants.
-DraggableNumber.MODIFIER_NONE = 0;
-DraggableNumber.MODIFIER_LARGE = 1;
-DraggableNumber.MODIFIER_SMALL = 2;
-
 // Utility function to replace .bind(this) since it is not available in all browsers.
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -36,7 +6,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
  * @constructor
  * @param {DomElement} input - The input which will be converted to a draggableNumber.
  */
-DraggableNumber.Element = function (input) {
+DraggableNumber = function (input) {
   this._input = input;
   this._span = document.createElement("span");
   this._isDragging = false;
@@ -53,8 +23,13 @@ DraggableNumber.Element = function (input) {
   this._init();
 };
 
-DraggableNumber.Element.prototype = {
-  constructor: DraggableNumber.Element,
+// Set some constants.
+DraggableNumber.MODIFIER_NONE = 0;
+DraggableNumber.MODIFIER_LARGE = 1;
+DraggableNumber.MODIFIER_SMALL = 2;
+
+DraggableNumber.prototype = {
+  constructor: DraggableNumber,
 
   /**
    * Initialize the DraggableNumber.

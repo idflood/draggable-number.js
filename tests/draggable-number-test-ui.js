@@ -7,7 +7,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 10;
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -26,7 +26,7 @@ describe("Draggable-number (UI)", function() {
   describe("DraggableNumberElement._onMouseDown", function() {
     beforeEach(function() {
       document.body.appendChild(input);
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -52,7 +52,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -86,7 +86,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -110,7 +110,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 42;
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -130,7 +130,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -156,7 +156,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.style.display = '';
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -181,7 +181,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       document.body.style['user-select'] = '';
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
     });
 
     afterEach(function() {
@@ -207,7 +207,7 @@ describe("Draggable-number (UI)", function() {
     beforeEach(function() {
       document.body.appendChild(input);
       input.value = 10;
-      this.el = new DraggableNumber.Element(input);
+      this.el = new DraggableNumber(input);
       this.el._lastMousePosition = {x: 0, y: 0}
     });
 
