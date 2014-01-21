@@ -6,7 +6,9 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
  * @constructor
  * @param {DomElement} input - The input which will be converted to a draggableNumber.
  */
-DraggableNumber = function (input) {
+DraggableNumber = function (input, options) {
+  this._options = options !== undefined ? options : {};
+
   this._input = input;
   this._span = document.createElement("span");
   this._isDragging = false;
