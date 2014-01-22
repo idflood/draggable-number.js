@@ -16,7 +16,7 @@ DraggableNumber = function (input, options) {
   this._value = 0;
 
   // Minimum mouse movement before a drag start.
-  this._dragThreshold = 10;
+  this._dragThreshold = this._options.dragThreshold !== undefined ? this._options.dragThreshold : 10;
 
   // Store the original display style for the input and span.
   this._inputDisplayStyle = "";
