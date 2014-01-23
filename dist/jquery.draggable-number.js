@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.1.0
+ * @version 0.1.1
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -25,7 +25,9 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
  * @constructor
  * @param {DomElement} input - The input which will be converted to a draggableNumber.
  */
-DraggableNumber = function (input) {
+DraggableNumber = function (input, options) {
+  this._options = options !== undefined ? options : {};
+
   this._input = input;
   this._span = document.createElement("span");
   this._isDragging = false;
@@ -33,7 +35,11 @@ DraggableNumber = function (input) {
   this._value = 0;
 
   // Minimum mouse movement before a drag start.
-  this._dragThreshold = 10;
+  this._dragThreshold = this._options.dragThreshold !== undefined ? this._options.dragThreshold : 10;
+
+  // Min/max value.
+  this._min = this._options.min !== undefined ? this._options.min : -Infinity;
+  this._max = this._options.max !== undefined ? this._options.max : Infinity;
 
   // Store the original display style for the input and span.
   this._inputDisplayStyle = "";
@@ -97,6 +103,7 @@ DraggableNumber.prototype = {
    * @param {Number} new_value - The new value.
    */
   set: function (new_value) {
+    new_value = this._constraintValue(new_value);
     this._value = new_value;
     this._input.value = this._value;
     this._span.innerHTML = this._value;
@@ -322,6 +329,18 @@ DraggableNumber.prototype = {
       // Inverse the position.y since mouse move to up should increase the _value.
       return delta.y * -1;
     }
+  },
+
+  /**
+   * Constrain a value between min and max.
+   * @private
+   * @param {Number} value - The value to constrain.
+   * @returns {Number}
+   */
+  _constraintValue: function (value) {
+    value = Math.min(value, this._max);
+    value = Math.max(value, this._min);
+    return value;
   }
 };
 
