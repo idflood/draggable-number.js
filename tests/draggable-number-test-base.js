@@ -20,12 +20,48 @@ describe("Draggable-number (Base)", function() {
       this.el._dragThreshold.should.equal(10);
     });
 
-    it("By default dragThreshold should be modifiable from options", function() {
+    it("DragThreshold should be modifiable from options", function() {
       this.el.destroy();
       this.el = new DraggableNumber(input, {dragThreshold: 42});
       this.el._dragThreshold.should.equal(42);
     });
+  });
 
+  describe("DraggableNumberElement.min/max", function() {
+    beforeEach(function() {
+      document.body.appendChild(input);
+      this.el = new DraggableNumber(input);
+    });
+
+    afterEach(function() {
+      this.el.destroy();
+      delete this.el;
+      document.body.removeChild(input);
+    });
+
+    it("By default max should be Infinity", function() {
+      this.el._max.should.equal(Infinity);
+    });
+
+    it("By default min should be -Infinity", function() {
+      this.el._max.should.equal(-Infinity);
+    });
+
+    it("Min/max should be modifiable from options", function() {
+      this.el.destroy();
+      this.el = new DraggableNumber(input, {min: 7, max: 100});
+      this.el._min.should.equal(7);
+      this.el._max.should.equal(100);
+    });
+
+    it("Setting the value should keep it between min/max", function() {
+      this.el.destroy();
+      this.el = new DraggableNumber(input, {min: 7, max: 100});
+      this.el.set(-42);
+      this.el.get().should.equal(7);
+      this.el.set(2415);
+      this.el.get().should.equal(100);
+    });
   });
 
   describe("DraggableNumberElement.getLargestDelta", function() {
