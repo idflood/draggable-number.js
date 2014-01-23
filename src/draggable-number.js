@@ -18,6 +18,10 @@ DraggableNumber = function (input, options) {
   // Minimum mouse movement before a drag start.
   this._dragThreshold = this._options.dragThreshold !== undefined ? this._options.dragThreshold : 10;
 
+  // Min/max value.
+  this._min = this._options.min !== undefined ? this._options.min : -Infinity;
+  this._max = this._options.max !== undefined ? this._options.max : Infinity;
+
   // Store the original display style for the input and span.
   this._inputDisplayStyle = "";
   this._spanDisplayStyle = "";
@@ -80,6 +84,7 @@ DraggableNumber.prototype = {
    * @param {Number} new_value - The new value.
    */
   set: function (new_value) {
+    new_value = this._constraintValue(new_value);
     this._value = new_value;
     this._input.value = this._value;
     this._span.innerHTML = this._value;
@@ -305,5 +310,17 @@ DraggableNumber.prototype = {
       // Inverse the position.y since mouse move to up should increase the _value.
       return delta.y * -1;
     }
+  },
+
+  /**
+   * Constrain a value between min and max.
+   * @private
+   * @param {Number} value - The value to constrain.
+   * @returns {Number}
+   */
+  _constraintValue: function (value) {
+    value = Math.min(value, this._max);
+    value = Math.max(value, this._min);
+    return value;
   }
 };
