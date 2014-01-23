@@ -39,12 +39,9 @@ describe("Draggable-number (Base)", function() {
       document.body.removeChild(input);
     });
 
-    it("By default max should be Infinity", function() {
+    it("By default min should be -Infinity and max Infinity", function() {
+      this.el._min.should.equal(-Infinity);
       this.el._max.should.equal(Infinity);
-    });
-
-    it("By default min should be -Infinity", function() {
-      this.el._max.should.equal(-Infinity);
     });
 
     it("Min/max should be modifiable from options", function() {
