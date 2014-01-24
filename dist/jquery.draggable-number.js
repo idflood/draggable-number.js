@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.1.1
+ * @version 0.2.0
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -116,6 +116,28 @@ DraggableNumber.prototype = {
    */
   get: function () {
     return this._value;
+  },
+
+  /**
+   * Set the minimum value.
+   * @public
+   * @param {Number} min - The minimum value.
+   */
+  setMin: function (min) {
+    this._min = min;
+    // Set the value with current value to automatically constrain it if needed.
+    this.set(this._value);
+  },
+
+  /**
+   * Set the maximum value.
+   * @public
+   * @param {Number} min - The minimum value.
+   */
+  setMax: function (max) {
+    this._max = max;
+    // Set the value with current value to automatically constrain it if needed.
+    this.set(this._value);
   },
 
   /**
