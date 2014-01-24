@@ -14,6 +14,17 @@ Include the draggable-number.min.js file and then call `new DraggableNumber(elem
 </script>
 ```
 
+## Options:
+You can set the draggableNumber options when creating a new instance,
+
+```javascript
+new DraggableNumber(element, {
+  min: 0,
+  max: 100,
+  dragThreshold: 5
+});
+```
+
 ## API:
 
 ### item.get()
