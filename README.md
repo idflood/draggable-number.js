@@ -41,6 +41,20 @@ Set the value of the element. This update the input and span value.
 item.set(42);
 ```
 
+### item.setMin(value)
+Set the minimum value.
+
+```javascript
+item.setMin(5);
+```
+
+### item.setMax(value)
+Set the maximum value.
+
+```javascript
+item.setMax(5);
+```
+
 ### item.destroy()
 Remove the DraggableNumber element, leaving the original input field.
 
