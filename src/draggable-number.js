@@ -100,6 +100,28 @@ DraggableNumber.prototype = {
   },
 
   /**
+   * Set the minimum value.
+   * @public
+   * @param {Number} min - The minimum value.
+   */
+  setMin: function (min) {
+    this._min = min;
+    // Set the value with current value to automatically constrain it if needed.
+    this.set(this._value);
+  },
+
+  /**
+   * Set the maximum value.
+   * @public
+   * @param {Number} min - The minimum value.
+   */
+  setMax: function (max) {
+    this._max = max;
+    // Set the value with current value to automatically constrain it if needed.
+    this.set(this._value);
+  },
+
+  /**
    * Remove the DraggableNumber.
    * @public
    */
