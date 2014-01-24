@@ -59,6 +59,22 @@ describe("Draggable-number (Base)", function() {
       this.el.set(2415);
       this.el.get().should.equal(100);
     });
+
+    it("Setting the min value should adapt the current value if needed", function() {
+      this.el.destroy();
+      this.el = new DraggableNumber(input);
+      this.el.set(7);
+      this.el.setMin(24);
+      this.el.get().should.equal(24);
+    });
+
+    it("Setting the max value should adapt the current value if needed", function() {
+      this.el.destroy();
+      this.el = new DraggableNumber(input);
+      this.el.set(7);
+      this.el.setMax(4);
+      this.el.get().should.equal(4);
+    });
   });
 
   describe("DraggableNumberElement.getLargestDelta", function() {
