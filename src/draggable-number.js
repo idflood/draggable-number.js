@@ -29,9 +29,25 @@ DraggableNumber = function (input, options) {
   this._init();
 };
 
-// Set some constants.
+/**
+ * Constant used when there is no key modifier.
+ * @constant
+ * type {Number}
+ */
 DraggableNumber.MODIFIER_NONE = 0;
+
+/**
+ * Constant used when there is a shift key modifier.
+ * @constant
+ * type {Number}
+ */
 DraggableNumber.MODIFIER_LARGE = 1;
+
+/**
+ * Constant used when there is a control key modifier.
+ * @constant
+ * type {Number}
+ */
 DraggableNumber.MODIFIER_SMALL = 2;
 
 DraggableNumber.prototype = {
@@ -70,6 +86,7 @@ DraggableNumber.prototype = {
     // Add key events on the input.
     this._input.addEventListener('blur', this._onInputBlur, false);
     this._input.addEventListener('keypress', this._onInputKeyDown, false);
+
     // Directly assign the function instead of using addeventlistener.
     // To programatically change the _value of the draggableNumber you
     // could then do:
@@ -141,6 +158,7 @@ DraggableNumber.prototype = {
     if (prevent === false) {
       value = 'all';
     }
+
     document.body.style['-moz-user-select'] = value;
     document.body.style['-webkit-user-select'] = value;
     document.body.style['-ms-user-select'] = value;
@@ -325,6 +343,7 @@ DraggableNumber.prototype = {
       x: newPosition.x - oldPosition.x,
       y: newPosition.y - oldPosition.y,
     };
+
     if (Math.abs(delta.x) > Math.abs(delta.y)) {
       return delta.x;
     }
