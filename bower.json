@@ -1,8 +1,21 @@
 {
   "name": "draggable-number.js",
-  "version": "0.0.1",
-  "dependencies": {
+  "version": "0.2.0",
+  "main": ["./dist/draggable-number.js"],
+  "devDependencies": {
     "mocha": "~1.14.0",
     "chai": "~1.8.1"
-  }
+  },
+  "ignore": [
+    "bower_components/",
+    "tests/",
+    "src/",
+    ".bowerrc",
+    ".coveralls.yml",
+    ".travis.yml",
+    "Gruntfile.coffee",
+    "index.html",
+    "karma.conf.js",
+    "tests.html"
+  ]
 }
