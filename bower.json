@@ -2,6 +2,13 @@
   "name": "draggable-number.js",
   "version": "0.2.1",
   "main": ["./dist/draggable-number.js"],
+  "keywords": [
+    "microjs",
+    "drag",
+    "draggable",
+    "input",
+    "number"
+  ],
   "devDependencies": {
     "mocha": "~1.14.0",
     "chai": "~1.8.1"
