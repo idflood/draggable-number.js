@@ -3,6 +3,10 @@ Display number as simple text but allow click + drag to change the value. If the
 number is simply clicked then it displays an input so that a precise value can
 be entered.
 
+## Getting Started:
+With [Bower](http://bower.io): `$ bower install --save draggable-number.js`
+Manually download the [latest release](https://github.com/idflood/draggable-number.js/releases).
+
 ## Usage:
 Include the draggable-number.min.js file and then call `new DraggableNumber(element)`.
 
