@@ -5,7 +5,8 @@ be entered.
 
 ## Getting Started:
 With [Bower](http://bower.io): `$ bower install --save draggable-number.js`
-Manually download the [latest release](https://github.com/idflood/draggable-number.js/releases).
+
+Or manually download the [latest release](https://github.com/idflood/draggable-number.js/releases).
 
 ## Usage:
 Include the draggable-number.min.js file and then call `new DraggableNumber(element)`.
