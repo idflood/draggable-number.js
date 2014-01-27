@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.2.1
+ * @version 0.2.2
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -162,9 +162,23 @@ DraggableNumber.prototype = {
    * @public
    */
   destroy: function () {
+    // Remove event listeners.
+    this._span.removeEventListener('mousedown', this._onMouseDown, false);
+    this._input.removeEventListener('blur', this._onInputBlur, false);
+    this._input.removeEventListener('keypress', this._onInputKeyDown, false);
+    document.removeEventListener('mouseup', this._onMouseUp, false);
+    document.removeEventListener('mousemove', this._onMouseMove, false);
+
+    // Remove the span element.
     if (this._span.parentNode) {
       this._span.parentNode.removeChild(this._span);
     }
+
+    // Delete variables.
+    delete this._input;
+    delete this._span;
+    delete this._inputDisplayStyle;
+    delete this._spanDisplayStyle;
   },
 
   /**
