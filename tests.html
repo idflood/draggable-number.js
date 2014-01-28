@@ -19,8 +19,22 @@
 
   <script>mocha.setup("bdd");</script>
 
-  <script src="tests/draggable-number-test-base.js"></script>
-  <script src="tests/draggable-number-test-ui.js"></script>
+  <script src="tests/base/dragThreshold.js"></script>
+  <script src="tests/base/min-max.js"></script>
+  <script src="tests/base/getLargestDelta.js"></script>
+  <script src="tests/base/getNumberOffset.js"></script>
+  <script src="tests/base/set-get.js"></script>
+  <script src="tests/base/hasMovedEnough.js"></script>
+
+  <script src="tests/ui/onInputBlur.js"></script>
+  <script src="tests/ui/onMouseDown.js"></script>
+  <script src="tests/ui/onMouseUp.js"></script>
+  <script src="tests/ui/onInputKeyDown.js"></script>
+  <script src="tests/ui/onInputChange.js"></script>
+  <script src="tests/ui/showSpan.js"></script>
+  <script src="tests/ui/showInput.js"></script>
+  <script src="tests/ui/preventSelection.js"></script>
+  <script src="tests/ui/onMouseMove.js"></script>
 
   <script>
   if (navigator.userAgent.indexOf('PhantomJS') < 0) {
