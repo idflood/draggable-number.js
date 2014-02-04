@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.2.2
+ * @version 0.3.0
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -35,11 +35,11 @@ DraggableNumber = function (input, options) {
   this._value = 0;
 
   // Minimum mouse movement before a drag start.
-  this._dragThreshold = this._options.dragThreshold !== undefined ? this._options.dragThreshold : 10;
+  this._dragThreshold = this._setOption('dragThreshold', 10);
 
   // Min/max value.
-  this._min = this._options.min !== undefined ? this._options.min : -Infinity;
-  this._max = this._options.max !== undefined ? this._options.max : Infinity;
+  this._min = this._setOption('min', -Infinity);
+  this._max = this._setOption('max', Infinity);
 
   // Store the original display style for the input and span.
   this._inputDisplayStyle = "";
@@ -179,6 +179,26 @@ DraggableNumber.prototype = {
     delete this._span;
     delete this._inputDisplayStyle;
     delete this._spanDisplayStyle;
+  },
+
+  /**
+   * Set an option value based on the option parameter and the data attribute.
+   * @private
+   * @param {String} name - The option name.
+   * @param {Number} defaultValue - The default value.
+   * @returns {Number}
+   */
+  _setOption: function (name, defaultValue) {
+    // Return the option if it is defined.
+    if (this._options[name] !== undefined) {
+      return this._options[name];
+    }
+    // Return the data attribute if it is defined.
+    if (this._input.hasAttribute("data-" + name)) {
+      return parseFloat(this._input.getAttribute("data-" + name), 10);
+    }
+    // If there is no option and no attribute, return the default value.
+    return defaultValue;
   },
 
   /**
