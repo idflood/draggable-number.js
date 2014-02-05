@@ -1,0 +1,40 @@
+{
+  "name": "draggable-number.js",
+  "version": "0.3.0",
+  "main": [
+    "./dist/draggable-number.js"
+  ],
+  "keywords": [
+    "microjs",
+    "drag",
+    "draggable",
+    "input",
+    "number"
+  ],
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1"
+  },
+  "ignore": [
+    "bower_components/",
+    "tests/",
+    "src/",
+    ".bowerrc",
+    ".coveralls.yml",
+    ".travis.yml",
+    "Gruntfile.coffee",
+    "index.html",
+    "karma.conf.js",
+    "tests.html"
+  ],
+  "homepage": "https://github.com/idflood/draggable-number.js",
+  "_release": "0.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.0",
+    "commit": "0371939596c1a4f0ed7663d67b9001f7ab98cfbf"
+  },
+  "_source": "git://github.com/idflood/draggable-number.js.git",
+  "_target": "~0.3.0",
+  "_originalSource": "draggable-number.js"
+}
