@@ -9,7 +9,7 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          debugInfo: true
+          debugInfo: false
 
       build:
         options:
