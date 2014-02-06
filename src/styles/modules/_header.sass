@@ -2,19 +2,22 @@ $header_bg: #B3C7D1
 $header_txt: #333
 
 .site-header
-  padding: 80px 0 80px 0
   margin-bottom: 80px
   background: $header_bg
   +background-image(linear-gradient(lighten($header_bg, 12%), $header_bg))
   color: $header_txt
   text-align: center
 
+  .container
+    position: relative
+    padding: 80px 0
+
 .site-header__title
   margin: 0
   padding: 0
-  font-size: 48px
+  font-size: 1.6em
   font-weight: 400
-  line-height: 60px
+  line-height: 1em
   letter-spacing: 1px
   color: $header_txt
 

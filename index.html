@@ -80,9 +80,27 @@
         </div>
 
         <script src="src/scripts/vendors/prism/prism.js"></script>
+        <script src="src/scripts/bower_components/jquery/jquery.min.js"></script>
         <script src="src/scripts/bower_components/draggable-number.js/dist/draggable-number.min.js"></script>
         <script>
           new DraggableNumber(document.getElementsByClassName('numeric-input')[0]);
+
+          // Script for demo page.
+          var $window = $(window);
+          var $header = $(".site-header");
+          var $headerInner = $header.find(".container");
+          var minSize = 420;
+
+          var onResize = function(e) {
+            var headerHeight = Math.max(minSize, $window.height());
+            $header.height(headerHeight);
+
+            var innerHeight = $headerInner.height();
+            var top = parseInt(headerHeight / 2 - innerHeight / 2);
+            $headerInner.css("top", Math.max(0, top - 80));
+          };
+          $window.resize(onResize);
+          $window.resize();
         </script>
 
         <script>
