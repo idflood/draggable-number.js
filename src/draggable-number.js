@@ -338,6 +338,11 @@ DraggableNumber.prototype = {
     // Update the input number.
     this.set(this.get() + offset);
 
+    // Call onchange callback if it exists.
+    if ("changeCallback" in this._options) {
+      this._options.changeCallback(new_value);
+    }
+
     // Save current mouse position.
     this._lastMousePosition = newMousePosition;
   },
