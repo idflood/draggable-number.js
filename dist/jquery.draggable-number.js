@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.3.0
+ * @version 0.3.2
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -17,6 +17,7 @@
         root['DraggableNumber'] = factory(root.jQuery);
     }
 }(this, function($) {
+
 // Utility function to replace .bind(this) since it is not available in all browsers.
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
@@ -355,7 +356,13 @@ DraggableNumber.prototype = {
     var offset = this._getNumberOffset(delta, modifier);
 
     // Update the input number.
-    this.set(this.get() + offset);
+    var new_value = this.get() + offset;
+    this.set(new_value);
+
+    // Call onchange callback if it exists.
+    if ("changeCallback" in this._options) {
+      this._options.changeCallback(new_value);
+    }
 
     // Save current mouse position.
     this._lastMousePosition = newMousePosition;
@@ -427,5 +434,7 @@ $.fn.draggableNumber = function(options) {
   });
 };
 
-    return DraggableNumber;
+
+return DraggableNumber;
+
 }));
