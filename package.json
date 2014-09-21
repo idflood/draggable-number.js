@@ -1,7 +1,7 @@
 {
   "name": "draggable-number.js",
   "description": "Minimal numeric input widget",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "license": "Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.",
   "author": {
     "name": "David Mignot",
@@ -28,7 +28,8 @@
     "karma-spec-reporter": "0.0.13",
     "karma-growl-reporter": "~0.1.1",
     "grunt-karma-coveralls": "~2.5.2",
-    "karma-chai": "0.1.0"
+    "karma-chai": "0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4"
   },
   "scripts": {
     "test": "grunt test --verbose"
