@@ -336,7 +336,8 @@ DraggableNumber.prototype = {
     var offset = this._getNumberOffset(delta, modifier);
 
     // Update the input number.
-    this.set(this.get() + offset);
+    var new_value = this.get() + offset;
+    this.set(new_value);
 
     // Call onchange callback if it exists.
     if ("changeCallback" in this._options) {
