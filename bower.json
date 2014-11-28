@@ -1,8 +1,8 @@
 {
   "name": "draggable-number",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "dependencies": {
-    "draggable-number.js": "~0.4.1",
+    "draggable-number.js": "~0.4.2",
     "jquery": "~2.1.0"
   }
 }
