@@ -2,7 +2,9 @@ var should = chai.should();
 
 describe("DraggableNumberElement.getNumberOffset", function() {
   var input = document.createElement("input");
+  input.value = 0;
   var input2 = document.createElement("input");
+  input2.value = 0;
 
   beforeEach(function() {
     document.body.appendChild(input);
