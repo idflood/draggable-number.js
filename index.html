@@ -21,7 +21,13 @@
 
         <script src="src/draggable-number.js"></script>
         <script>
-            new DraggableNumber(document.getElementsByClassName('numeric-input-1')[0], {min: -42, max: 100000});
+            var el = document.getElementsByClassName('numeric-input-1')[0];
+            new DraggableNumber(el, {
+                min: -42,
+                max: 100000,
+                changeCallback: function(val) {console.log("on change: " + val);},
+                endCallback: function(val) {console.log("on end: " + val);}
+            });
         </script>
     </body>
 </html>

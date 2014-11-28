@@ -14,6 +14,7 @@ DraggableNumber = function (input, options) {
   this._isDragging = false;
   this._lastMousePosition = {x: 0, y: 0};
   this._value = 0;
+  this._startValue = this._value;
 
   // Minimum mouse movement before a drag start.
   this._dragThreshold = this._setOption('dragThreshold', 10);
@@ -217,6 +218,7 @@ DraggableNumber.prototype = {
    * @private
    */
   _showInput: function () {
+    this._startValue = this._value;
     this._input.style.display = this._inputDisplayStyle;
     this._span.style.display = 'none';
     this._input.focus();
@@ -239,6 +241,12 @@ DraggableNumber.prototype = {
   _onInputBlur: function (e) {
     this._onInputChange();
     this._showSpan();
+    // Call onchange callback if it exists.
+    if ("endCallback" in this._options) {
+      if (this._value != this._startValue) {
+        this._options.endCallback(this._value);
+      }
+    }
   },
 
   /**
@@ -270,6 +278,7 @@ DraggableNumber.prototype = {
     this._preventSelection(true);
     this._isDragging = false;
     this._lastMousePosition = {x: e.clientX, y: e.clientY};
+    this._startValue = this._value;
 
     document.addEventListener('mouseup', this._onMouseUp, false);
     document.addEventListener('mousemove', this._onMouseMove, false);
@@ -290,6 +299,15 @@ DraggableNumber.prototype = {
 
     document.removeEventListener('mouseup', this._onMouseUp, false);
     document.removeEventListener('mousemove', this._onMouseMove, false);
+
+    // Call complete callback if it exists.
+    if ("endCallback" in this._options) {
+      // Don't call end callback if nothing changed.
+      if (this._startValue != this._value) {
+        this._options.endCallback(this._value);
+      }
+    }
+    this._startValue = this._value;
   },
 
   /**
