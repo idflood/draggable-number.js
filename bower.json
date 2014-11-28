@@ -1,8 +1,8 @@
 {
-  "name": "stimul skeleton",
-  "version": "0.0.1",
+  "name": "draggable-number",
+  "version": "0.4.0",
   "dependencies": {
-    "draggable-number.js": "~0.3.0",
+    "draggable-number.js": "~0.4.0",
     "jquery": "~2.1.0"
   }
 }
