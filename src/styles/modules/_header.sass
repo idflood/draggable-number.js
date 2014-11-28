@@ -1,33 +1,47 @@
 $header_bg: #B3C7D1
-$header_txt: #333
+$header_txt: #353742
 
 .site-header
+  position: relative
   margin-bottom: 80px
   background: $header_bg
   +background-image(linear-gradient(lighten($header_bg, 12%), $header_bg))
   color: $header_txt
   text-align: center
+  z-index: 100
 
   .container
     position: relative
     padding: 80px 0
 
 .site-header__title
+  +text-shadow(2px 2px 0px rgba(0, 0, 0, 0.2))
   margin: 0
   padding: 0
-  font-size: 1.6em
+  font-size: 32px
   font-weight: 400
   line-height: 1em
   letter-spacing: 1px
   color: $header_txt
 
 .site-header__description
-  font-size: 21px
+  font-size: 20px
   font-weight: 200
   line-height: 38px
-  font-style: italic
+  //font-style: italic
 
 .site-header__number
   min-height: 70px
   font-size: 3em
   color: $header_txt
+
+.site-header__next
+  +link-two-colors(mix($header_txt, $header_bg, 30%), $header_txt)
+  +transition(color 0.2s)
+  position: absolute
+  bottom: 50px
+  left: 0
+  right: 0
+  border: 0
+  font-size: 28px
+  text-decoration: none
