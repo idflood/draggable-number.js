@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.3.4
+ * @version 0.4.1
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
