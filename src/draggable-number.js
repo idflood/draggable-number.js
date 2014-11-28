@@ -356,7 +356,7 @@ DraggableNumber.prototype = {
     // Update the input number.
     var new_value = this.get() + offset;
     // Hack for rounding errors.
-    new_value = parseFloat(new_value.toFixed(10))
+    new_value = parseFloat(new_value.toFixed(10));
     this.set(new_value);
 
     // Call onchange callback if it exists.
@@ -377,9 +377,10 @@ DraggableNumber.prototype = {
    */
   _getNumberOffset: function (delta, modifier) {
     var increment = 1;
+
     // The line below was taken from dat.gui: https://code.google.com/p/dat-gui/source/browse/src/dat/controllers/NumberController.js
-    if (this._value != 0) {
-      var increment = Math.pow(10, Math.floor(Math.log(Math.abs(this._value))/Math.LN10))/10;
+    if (this._value !== 0 && isNaN(this._value) === false) {
+      increment = Math.pow(10, Math.floor(Math.log(Math.abs(this._value))/Math.LN10))/10;
     }
     if (modifier == DraggableNumber.MODIFIER_SMALL) {
       increment *= 0.1;
