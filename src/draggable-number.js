@@ -104,9 +104,11 @@ DraggableNumber.prototype = {
    */
   set: function (new_value) {
     new_value = this._constraintValue(new_value);
-    this._value = new_value;
-    this._input.value = this._value;
-    this._span.innerHTML = this._value;
+    if (this._value !== new_value) {
+      this._value = new_value;
+      this._input.value = this._value;
+      this._span.innerHTML = this._value;
+    }
   },
 
   /**
