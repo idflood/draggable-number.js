@@ -4,7 +4,7 @@
  *
  * @license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  * @author David Mignot - http://idflood.com
- * @version 0.4.3
+ * @version 0.4.5
  **/
 (function(root, factory) {
     if(typeof exports === 'object') {
@@ -286,7 +286,13 @@ DraggableNumber.prototype = {
    */
   _onInputKeyDown: function (e) {
     var keyEnter = 13;
-    if (e.charCode == keyEnter) {
+
+    // "charCode" and "keyCode" are deprecated.
+    // "which", which is supposed to be either "charCode" or "keyCode", is not
+    // properly supported by some IE. It is also deprecated, so do not use it.
+    // "key" is the modern way to go, but only recent browsers support it.
+    var keyCode = e.charCode || e.keyCode;
+    if (e.key == "Enter" || keyCode == keyEnter) {
       this._input.blur();
     }
   },
