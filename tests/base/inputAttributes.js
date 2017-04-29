@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumber input attributes", function() {
+describe("DraggableNumber input attributes", () => {
   beforeEach(function() {
     this.input = document.createElement("input");
     document.body.appendChild(this.input);

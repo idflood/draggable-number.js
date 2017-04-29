@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.hasMovedEnough", function() {
+describe("DraggableNumberElement.hasMovedEnough", () => {
   var input = document.createElement("input");
   var input2 = document.createElement("input");
 

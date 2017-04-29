@@ -1,11 +1,11 @@
 var should = chai.should();
 
-describe("DraggableNumberElement callbacks", function() {
+describe("DraggableNumberElement callbacks", () => {
   var input = document.createElement("input");
 
   var testVal = 0;
 
-  var onChangeCallback = function(new_val) {
+  var onChangeCallback = new_val => {
     testVal = new_val;
   };
 

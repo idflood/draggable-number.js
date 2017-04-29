@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.min/max", function() {
+describe("DraggableNumberElement.min/max", () => {
   var input = document.createElement("input");
   var input2 = document.createElement("input");
 

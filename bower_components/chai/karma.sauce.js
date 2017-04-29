@@ -1,7 +1,7 @@
 var version = require('./package.json').version;
 var ts = new Date().getTime();
 
-module.exports = function(config) {
+module.exports = config => {
   var auth;
 
   try {
@@ -34,7 +34,7 @@ module.exports = function(config) {
       username: auth.SAUCE_USERNAME
     , accessKey: auth.SAUCE_ACCESS_KEY
     , startConnect: true
-    , tags: tags
+    , tags
     , testName: 'ChaiJS'
     , tunnelIdentifier: tunnel
   };

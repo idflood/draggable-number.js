@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.dragThreshold", function() {
+describe("DraggableNumberElement.dragThreshold", () => {
   var input = document.createElement("input");
   var input2 = document.createElement("input");
 

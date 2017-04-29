@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.preventSelection", function() {
+describe("DraggableNumberElement.preventSelection", () => {
   var input = document.createElement("input");
 
   beforeEach(function() {

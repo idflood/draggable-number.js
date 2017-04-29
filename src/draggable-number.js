@@ -1,5 +1,5 @@
 // Utility function to replace .bind(this) since it is not available in all browsers.
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+var __bind = (fn, me) => function(...args) { return fn.apply(me, args); };
 
 /**
  * Define the DraggableNumber element.
@@ -59,7 +59,7 @@ DraggableNumber.prototype = {
    * Initialize the DraggableNumber.
    * @private
    */
-  _init: function () {
+  _init() {
     // Get the inital _value from the input.
     this._value = parseFloat(this._input.value, 10);
 
@@ -102,7 +102,7 @@ DraggableNumber.prototype = {
    * @public
    * @param {Number} new_value - The new value.
    */
-  set: function (new_value) {
+  set(new_value) {
     new_value = this._constraintValue(new_value);
     if (this._value !== new_value) {
       this._value = new_value;
@@ -116,7 +116,7 @@ DraggableNumber.prototype = {
    * @public
    * @returns {Number}
    */
-  get: function () {
+  get() {
     return this._value;
   },
 
@@ -125,7 +125,7 @@ DraggableNumber.prototype = {
    * @public
    * @param {Number} min - The minimum value.
    */
-  setMin: function (min) {
+  setMin(min) {
     this._min = min;
     // Set the value with current value to automatically constrain it if needed.
     this.set(this._value);
@@ -136,7 +136,7 @@ DraggableNumber.prototype = {
    * @public
    * @param {Number} min - The minimum value.
    */
-  setMax: function (max) {
+  setMax(max) {
     this._max = max;
     // Set the value with current value to automatically constrain it if needed.
     this.set(this._value);
@@ -146,7 +146,7 @@ DraggableNumber.prototype = {
    * Remove the DraggableNumber.
    * @public
    */
-  destroy: function () {
+  destroy() {
     // Remove event listeners.
     this._span.removeEventListener('mousedown', this._onMouseDown, false);
     this._input.removeEventListener('blur', this._onInputBlur, false);
@@ -173,7 +173,7 @@ DraggableNumber.prototype = {
    * @param {Number} defaultValue - The default value.
    * @returns {Number}
    */
-  _setOption: function (name, defaultValue) {
+  _setOption(name, defaultValue) {
     // Return the option if it is defined.
     if (this._options[name] !== undefined) {
       return this._options[name];
@@ -191,7 +191,7 @@ DraggableNumber.prototype = {
    * @private
    * @param {Boolean} prevent - Should we prevent or not the selection.
    */
-  _preventSelection: function (prevent) {
+  _preventSelection(prevent) {
     var value = 'none';
     if (prevent === false) {
       value = 'all';
@@ -207,7 +207,7 @@ DraggableNumber.prototype = {
    * Add a span element before the input.
    * @private
    */
-  _addSpan: function () {
+  _addSpan() {
     var inputParent = this._input.parentNode;
     inputParent.insertBefore(this._span, this._input);
     this._span.innerHTML = this.get();
@@ -220,7 +220,7 @@ DraggableNumber.prototype = {
    * Display the input and hide the span element.
    * @private
    */
-  _showInput: function () {
+  _showInput() {
     this._startValue = this._value;
     this._input.style.display = this._inputDisplayStyle;
     this._span.style.display = 'none';
@@ -231,7 +231,7 @@ DraggableNumber.prototype = {
    * Show the span element and hide the input.
    * @private
    */
-  _showSpan: function () {
+  _showSpan() {
     this._input.style.display = 'none';
     this._span.style.display = this._spanDisplayStyle;
   },
@@ -241,7 +241,7 @@ DraggableNumber.prototype = {
    * @private
    * @param {Object} e - Event.
    */
-  _onInputBlur: function (e) {
+  _onInputBlur(e) {
     this._onInputChange();
     this._showSpan();
     // Call onchange callback if it exists.
@@ -256,7 +256,7 @@ DraggableNumber.prototype = {
    * Called on input onchange event, set the value based on the input value.
    * @private
    */
-  _onInputChange: function () {
+  _onInputChange() {
     this.set(parseFloat(this._input.value, 10));
   },
 
@@ -265,7 +265,7 @@ DraggableNumber.prototype = {
    * @private
    * @param {Object} e - Key event.
    */
-  _onInputKeyDown: function (e) {
+  _onInputKeyDown(e) {
     var keyEnter = 13;
     if (e.charCode == keyEnter) {
       this._input.blur();
@@ -277,7 +277,7 @@ DraggableNumber.prototype = {
    * @private
    * @param {Object} e - Mouse event.
    */
-  _onMouseDown: function (e) {
+  _onMouseDown(e) {
     this._preventSelection(true);
     this._isDragging = false;
     this._lastMousePosition = {x: e.clientX, y: e.clientY};
@@ -293,7 +293,7 @@ DraggableNumber.prototype = {
    * @private
    * @param {Object} e - Mouse event.
    */
-  _onMouseUp: function (e) {
+  _onMouseUp(e) {
     this._preventSelection(false);
     // If we didn't drag the span then we display the input.
     if (this._isDragging === false) {
@@ -321,7 +321,7 @@ DraggableNumber.prototype = {
    * @param {Object} lastMousePosition - the last mouse position.
    * @returns {Boolean}
    */
-  _hasMovedEnough: function (newMousePosition, lastMousePosition) {
+  _hasMovedEnough(newMousePosition, lastMousePosition) {
     if (Math.abs(newMousePosition.x - lastMousePosition.x) >= this._dragThreshold ||
       Math.abs(newMousePosition.y - lastMousePosition.y) >= this._dragThreshold) {
       return true;
@@ -329,7 +329,7 @@ DraggableNumber.prototype = {
     return false;
   },
 
-  _onMouseMove: function (e) {
+  _onMouseMove(e) {
     // Get the new mouse position.
     var newMousePosition = {x: e.clientX, y: e.clientY};
 
@@ -374,11 +374,11 @@ DraggableNumber.prototype = {
     this._lastMousePosition = newMousePosition;
   },
 
-  _getStep: function (value) {
+  _getStep(value) {
     var step = 1;
     // The line below was taken from dat.gui: https://code.google.com/p/dat-gui/source/browse/src/dat/controllers/NumberController.js
     if (value !== 0 && isNaN(value) === false) {
-      step = Math.pow(10, Math.floor(Math.log(Math.abs(value))/Math.LN10))/10;
+      step = 10 ** Math.floor(Math.log(Math.abs(value))/Math.LN10)/10;
     }
     return step;
   },
@@ -390,7 +390,7 @@ DraggableNumber.prototype = {
    * @param {Number} modifier - the modifier type.
    * @returns {Number}
    */
-  _getNumberOffset: function (delta, modifier) {
+  _getNumberOffset(delta, modifier) {
     var increment = 1;
 
     if (modifier == DraggableNumber.MODIFIER_SMALL) {
@@ -413,7 +413,7 @@ DraggableNumber.prototype = {
    * @param {Object} lastMousePosition - the last mouse position.
    * @returns {Number}
    */
-  _getLargestDelta: function (newPosition, oldPosition) {
+  _getLargestDelta(newPosition, oldPosition) {
     var result = 0;
     var delta = {
       x: newPosition.x - oldPosition.x,
@@ -435,7 +435,7 @@ DraggableNumber.prototype = {
    * @param {Number} value - The value to constrain.
    * @returns {Number}
    */
-  _constraintValue: function (value) {
+  _constraintValue(value) {
     value = Math.min(value, this._max);
     value = Math.max(value, this._min);
     return value;

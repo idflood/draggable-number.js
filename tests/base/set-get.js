@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.set and get", function() {
+describe("DraggableNumberElement.set and get", () => {
   var input = document.createElement("input");
   var input2 = document.createElement("input");
 
