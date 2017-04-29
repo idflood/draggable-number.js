@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement._onMouseUp", function() {
+describe("DraggableNumberElement._onMouseUp", () => {
   var input = document.createElement("input");
 
   beforeEach(function() {

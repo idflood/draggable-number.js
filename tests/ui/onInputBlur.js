@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement._onInputBlur", function() {
+describe("DraggableNumberElement._onInputBlur", () => {
   var input = document.createElement("input");
 
   beforeEach(function() {

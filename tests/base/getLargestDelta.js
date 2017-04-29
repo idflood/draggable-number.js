@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.getLargestDelta", function() {
+describe("DraggableNumberElement.getLargestDelta", () => {
   var input = document.createElement("input");
   var input2 = document.createElement("input");
 

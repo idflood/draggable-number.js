@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement.getNumberOffset", function() {
+describe("DraggableNumberElement.getNumberOffset", () => {
   var input = document.createElement("input");
   input.value = 0;
   var input2 = document.createElement("input");

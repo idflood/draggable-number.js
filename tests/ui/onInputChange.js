@@ -1,6 +1,6 @@
 var should = chai.should();
 
-describe("DraggableNumberElement input value change", function() {
+describe("DraggableNumberElement input value change", () => {
   var input = document.createElement("input");
 
   beforeEach(function() {
